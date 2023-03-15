@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #80464d;
+            margin-bottom: 30px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            font-size: 20px;
+            color: #80464d;
+            line-height: 30px;
+        }
+
+        .container {
+            padding: 30px 20px;
+            background-color: #ffdfe3;
+            margin: 30px auto;
+            width: 600px;
+        }
+
+        button {
+            width: 100%;
+            margin: 10px auto;
+            background-color: white;
+            color: #80464DFF;
+            font-size: 22px;
+            text-transform: uppercase;
+            padding: 10px 0;
+            border: 0;
+            border-radius: 40px;
+        }
+
+    </style>
+
+</head>
+<body>
+<article class="container">
+    <h1>[*Bài tập] Luyện tập vòng lặp 01</h1>
+    <h2>Bài 1: Sử dụng vòng lặp để đếm từ 1 đến 100. Khi số là 99, hiển thị hộp thoại thông báo là đã hoàn thành</h2>
+    <button onclick="counterto100()">Bấm để bắt đầu bài 1</button>
+
+    <h2>Bài 2: Sử dụng hàm prompt() để lấy thông tin nhiệt độ hiện tại được nhập bởi người truy cập.
+        Nếu nhiệt độ nhập vào trên 100, yêu cầu người dùng giảm nhiệt độ.
+        Nếu nhiệt độ dưới 20, yêu cầu người dùng tăng nhiệt độ.
+    </h2>
+    <button onclick="tempCheck()">Bấm để bắt đầu bài 2</button>
+
+    <h2>Bài 3: Hiển thị ra 20 số trong dãy fibonacci đầu tiên</h2>
+    <button onclick="fiboDisplay()">Bấm để bắt đầu bài 3</button>
+
+    <h2>Bài 4: Tìm số trong dãy fibonacci chia hết cho 5</h2>
+    <button onclick="fiboMod5()">Bấm để bắt đầu bài 4</button>
+
+    <h2>Bài 5: Tính tổng các số trong dãy fibonacci</h2>
+    <button onclick="fiboSum()">Bấm để bắt đầu bài 5</button>
+
+    <h2>Bài 6: Tính tổng của các số chia hết cho 7 theo thứ tự</h2>
+    <button onclick="intMod7()">Bấm để bắt đầu bài 6</button>
+
+    <h2>Bài 7: Hãy viết một chương trình in ra các số từ 1 đến 100. Nhưng nếu số chia hết cho 3 thì in ra "Fizz"
+        5 thì in ra "Buzz" thay vì in ra số đó. Và nếu số đó chia hết cho cả 3 và 5 thì in ra chữ "FizzBuzz".
+    </h2>
+    <button onclick="fizzBuzz()">Bấm để bắt đầu bài 7</button>
+
+    <h2>Bài 8: Game đoán số</h2>
+    <button onclick="numGuess()">Bấm để bắt đầu bài 8</button>
+</article>
+</body>
+</html>
+
+<script>
+    function counterto100() {
+        for (let i = 1; i <= 100; i++) {
+            document.write(i + '<br>');
+            if (i === 99) {
+                document.write("Đã hoàn thành");
+                break;
+            }
+        }
+    }
+
+    function tempCheck() {
+        let temp = +prompt("Nhập nhiệt độ hiện tại: ");
+
+        if (isNaN(temp)) {
+            alert("Dữ liệu nhập sai");
+        } else if (temp < 20) {
+            alert('Tăng nhiệt độ')
+        } else if (temp > 100) {
+            alert('Giảm nhiệt độ')
+        } else {
+            alert("Giữ nguyên nhiệt độ")
+        }
+    }
+
+    function fiboDisplay() {
+        let fiboTimes = +prompt("Nhập số lượng số fibonacci muốn hiển thị: ");
+        let a = 0;
+        let b = 1;
+        document.write(a + '<br>' + b + '<br>');
+        for (let i = 0; i < (fiboTimes - 2); i++) {
+            let c = a + b;
+            a = b;
+            b = c;
+            document.write(c + '<br>');
+        }
+    }
+
+    function fiboMod5() {
+        let numCount = +prompt("Nhập số lượng số fibo");
+        let a = 0;
+        let b = 1;
+        document.write("Các số chia hết cho 5 trong chuỗi Fibonacci đã nhập là: " + '<br>')
+        for (let i = 0; i < (numCount - 2); i++) {
+            let c = a + b;
+            a = b;
+            b = c;
+            if (c % 5 === 0) {
+                document.write(c + '<br>')
+            }
+        }
+    }
+
+    function fiboSum() {
+        let numCount = +prompt("Nhập số lượng số fibo");
+        let a = 0;
+        let b = 1;
+        let sum = 1;
+        document.write("Tổng các số Fibonacci theo chuỗi đã cho là: " + '<br>')
+        for (let i = 0; i < (numCount - 2); i++) {
+            let c = a + b;
+            a = b;
+            b = c;
+            sum += c;
+        }
+        document.write(sum);
+    }
+
+    function intMod7() {
+        let sum = 0;
+        let numCount = +prompt("Nhập số lượng các số chia hết cho 7 đầu tiên: ");
+        for (let i = 1; i > 0; i++) {
+            if (i % 7 === 0) {
+                sum += i;
+                numCount--;
+            }
+            if (numCount <= 0) {
+                break;
+            }
+        }
+        document.write("Tổng các số chia hết cho 7 theo chuỗi đã nhập là: " + sum);
+    }
+
+    function fizzBuzz() {
+        let numCount = +prompt("Nhập số các số sẽ in ra: ")
+        for (let i = 1; i < numCount; i++) {
+            if (i % 3 === 0 && i % 5 === 0) {
+                document.write("FizzBuzz" + '<br>');
+                continue;
+            } else if (i % 5 === 0) {
+                document.write("Buzz" + '<br>');
+                continue;
+            } else if (i % 3 === 0) {
+                document.write("Fizz" + '<br>');
+                continue;
+            }
+            document.write(i + '<br>');
+        }
+    }
+
+    function numGuess() {
+        let numRange = +prompt("Nhập số tối đa để bắt đầu chơi!")
+        let rndNum = +Math.floor(Math.random() * numRange);
+        let guessedNum = +prompt("Nhập số bạn muốn dự đoán: ");
+        if (guessedNum === rndNum) {
+            alert("Bạn đã đoán chính xác !!!");
+        } else {
+            alert("Đoán sai mất rồi >.<! số chính xác là: " + rndNum);
+        }
+    }
+
+</script>
+
+<!--Bài 1: Sử dụng vòng lặp để đếm từ 1 đến 100. Khi số là 99, hiển thị hộp thoại thông báo là đã hoàn thành.-->
+<!--Bài 2: Sử dụng hàm prompt() để lấy thông tin nhiệt độ hiện tại được nhập bởi người truy cập. -->
+<!--Nếu nhiệt độ nhập vào trên 100, yêu cầu người dùng giảm nhiệt độ. Nếu nhiệt độ dưới 20, yêu cầu người dùng tăng nhiệt độ.-->
+<!--Bài 3: Hiển thị ra 20 số trong dãy fibonacci đầu tiên.-->
+<!--Bài 4: Tìm số đầu tiên trong dãy fibonacci chia hết cho 5.-->
+<!--Bài 5: Tính tổng của 20 số đầu tiên trong dãy fibonacci.-->
+<!--Bài 6: Tính tổng của 30 số chia hết cho 7 đầu tiên trong các số tự nhiên.-->
+<!--Bài 7: Hãy viết một chương trình in ra các số từ 1 đến 100. Nhưng nếu số chia hết cho 3 thì in ra "Fizz", -->
+<!--5 thì in ra "Buzz" thay vì in ra số đó. Và nếu số đó chia hết cho cả 3 và 5 thì in ra chữ "FizzBuzz".-->
+<!--Học viên tham khảo ứng dụng demo tại đây.-->
+<!--Lưu ý: Không sao chép mã nguồn trong phần tham khảo, vì nó được cố ý giữ cho tệ hơn thường lệ.-->
+<!--Bài 8: Game đoán số-->
